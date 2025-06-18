@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Tabs,
   TabsList,
@@ -9,8 +7,18 @@ import {
   TabsContent,
 } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+// @ts-nocheck
+type Product = {
+  title: string;
+  price: string;
+  rating: number;
+  reviews: string;
+  image: string;
+};
+
+type ProductsByCategory = Record<string, Product[]>;
 const categories = ["All", "Boots", "Shoes", "Sandals", "Slipper", "Jogging"];
-const allProducts = {
+const allProducts: ProductsByCategory = {
   All: [
     {
       title: "Nike Running",
@@ -35,7 +43,7 @@ const allProducts = {
 };
 
 export default function AllRunPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  // const [activeCategory, setActiveCategory] = useState("All");
 
   return (
     <div className="bg-black text-white min-h-screen font-sans bg bg-gradient-to-b from-gray-900 to-black">
