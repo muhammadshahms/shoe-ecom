@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import {
   Tabs,
   TabsList,
@@ -7,6 +7,7 @@ import {
   TabsContent,
 } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import { useState } from "react";
 // @ts-nocheck
 type Product = {
   title: string;
@@ -34,17 +35,98 @@ const allProducts: ProductsByCategory = {
       reviews: "150k+",
       image: "/2.png",
     },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
+    {
+      title: "Nike Air Max",
+      price: "$190",
+      rating: 4.8,
+      reviews: "150k+",
+      image: "/2.png",
+    },
   ],
-  Boots: [],
+  Boots: [{
+    title: "Nike Running",
+    price: "$210",
+    rating: 4.9,
+    reviews: "200k+",
+    image: "/1.png",
+  },
+  {
+    title: "Nike Air Max",
+    price: "$190",
+    rating: 4.8,
+    reviews: "150k+",
+    image: "/2.png",
+  },
+  {
+    title: "Nike Air Max",
+    price: "$190",
+    rating: 4.8,
+    reviews: "150k+",
+    image: "/2.png",
+  },
+  {
+    title: "Nike Air Max",
+    price: "$190",
+    rating: 4.8,
+    reviews: "150k+",
+    image: "/2.png",
+  }],
   Shoes: [],
   Sandals: [],
   Slipper: [],
   Jogging: [],
 };
 
+
+
 export default function AllRunPage() {
   // const [activeCategory, setActiveCategory] = useState("All");
+  const productsPerPage = 3;
+  const [currentPages, setCurrentPages] = useState(
+    Object.fromEntries(categories.map((cat) => [cat, 0]))
+  );
 
+  const setCurrentPage = (cat: any, page: any) => {
+    setCurrentPages((prev: any) => ({
+      ...prev,
+      [cat]: page,
+    }));
+  };
   return (
     <div className="bg-black text-white min-h-screen font-sans bg bg-gradient-to-b from-gray-900 to-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,6 +203,7 @@ export default function AllRunPage() {
         {/* Category Tabs */}
         <section className="p-10">
           <h3 className="text-3xl font-bold text-yellow-400 mb-6 text-center">Categories</h3>
+
           <Tabs defaultValue="All" className="w-full">
             <TabsList className="flex justify-center flex-wrap gap-4 mb-8 bg-transparent border-none">
               {categories.map((cat) => (
@@ -134,47 +217,87 @@ export default function AllRunPage() {
               ))}
             </TabsList>
 
-            {categories.map((cat) => (
-              <TabsContent key={cat} value={cat}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="flex flex-wrap justify-center gap-6"
-                >
-                  {(allProducts[cat] || []).map((product, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ duration: 0.4 }}
-                      className="w-[300px] rounded-xl border border-gray-700 bg-[#1e1e1e] p-4"
-                    >
-                      <div className="relative">
-                        <img src={product.image} alt={product.title} className="w-full h-48 object-contain mb-4" />
-                        <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-full text-xs">
-                          {product.rating} <span className="text-gray-800">({product.reviews})</span>
+            {categories.map((cat) => {
+              const allCatProducts = allProducts[cat] || [];
+              const currentPage = currentPages[cat] || 0;
+              const totalPages = Math.ceil(allCatProducts.length / productsPerPage);
+              const paginatedProducts = allCatProducts.slice(
+                currentPage * productsPerPage,
+                currentPage * productsPerPage + productsPerPage
+              );
+
+              return (
+                <TabsContent key={cat} value={cat}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    {paginatedProducts.map((product, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.03 }}
+                        transition={{ duration: 0.4 }}
+                        className="rounded-xl border border-gray-700 bg-[#1e1e1e] p-4"
+                      >
+                        <div className="relative">
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className="w-full h-48 object-contain mb-4"
+                          />
+                          <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-full text-xs">
+                            {product.rating}
+                            <span className="text-gray-800">({product.reviews})</span>
+                          </div>
                         </div>
-                      </div>
-                      <h4 className="text-white text-lg font-semibold mb-1">{product.title}</h4>
-                      <p className="text-yellow-400 text-sm mb-2">{product.price}</p>
-                      <p className="text-gray-500 text-xs mb-1">Running Nike - Collection 2022</p>
-                      <div className="flex items-center gap-1 text-yellow-400 text-sm mb-4">
-                        {[...Array(5)].map((_, idx) => (
-                          <Star key={idx} className="h-4 w-4 fill-yellow-400" />
-                        ))}
-                      </div>
-                      <Button className="bg-yellow-400 text-black w-full hover:bg-yellow-300">Buy Now</Button>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </TabsContent>
-            ))}
+                        <h4 className="text-white text-lg font-semibold mb-1">{product.title}</h4>
+                        <p className="text-yellow-400 text-sm mb-2">{product.price}</p>
+                        <p className="text-gray-500 text-xs mb-1">
+                          Running Nike - Collection 2022
+                        </p>
+                        <div className="flex items-center gap-1 text-yellow-400 text-sm mb-4">
+                          {[...Array(5)].map((_, idx) => (
+                            <Star key={idx} className="h-4 w-4 fill-yellow-400" />
+                          ))}
+                        </div>
+                        <Button className="bg-yellow-400 text-black w-full hover:bg-yellow-300">
+                          Buy Now
+                        </Button>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  {/* Carousel Pagination Buttons */}
+                  {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-2 mt-8">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-gray-800 text-white hover:bg-yellow-400 hover:text-black"
+                        onClick={() => setCurrentPage(cat, Math.max(currentPage - 1, 0))}
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full bg-gray-800 text-white hover:bg-yellow-400 hover:text-black"
+                        onClick={() => setCurrentPage(cat, Math.min(currentPage + 1, totalPages - 1))}
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  )}
+                </TabsContent>
+              );
+            })}
           </Tabs>
         </section>
-
 
         {/* Footer */}
         <footer className="bg-gray-900 text-gray-400 p-10 mt-10 text-sm">
