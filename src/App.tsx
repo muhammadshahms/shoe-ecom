@@ -129,68 +129,82 @@ export default function AllRunPage() {
   };
   return (
     <div className="bg-black text-white min-h-screen font-sans bg bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <header className="sticky top-0 z-50 flex justify-between items-center px-8 py-5 ">
-          <h1 className="text-2xl font-bold text-yellow-400">AllRun</h1>
-          <nav className="hidden md:flex space-x-8 text-sm">
-            <a href="#" className="hover:text-yellow-400">Home</a>
-            <a href="#" className="hover:text-yellow-400">About Us</a>
-            <a href="#" className="hover:text-yellow-400">Category</a>
-          </nav>
-          <div className="w-8 h-8 rounded-full bg-gray-700" />
-        </header>
+      {/* Header */}
+      <header className="sticky top-0 z-50 flex justify-between items-center px-8 py-5 ">
+        <h1 className="text-2xl font-bold text-yellow-400">AllRun</h1>
+        <nav className="hidden md:flex space-x-8 text-sm">
+          <a href="#" className="hover:text-yellow-400">Home</a>
+          <a href="#" className="hover:text-yellow-400">About Us</a>
+          <a href="#" className="hover:text-yellow-400">Category</a>
+        </nav>
+        <div className="w-8 h-8 rounded-full bg-gray-700" />
+      </header>
 
-
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-10 px-10 py-20 items-center  relative overflow-hidden">
+        <section className=" px-8 py-20 grid grid-cols-1 md:grid-cols-2 items-center relative overflow-hidden">
+          {/* Text Content */}
           <motion.div
             className="z-10"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-extrabold leading-tight">
+            <h2 className="text-5xl font-extrabold text-white leading-tight">
               Summer <span className="text-yellow-400">Collections</span>
             </h2>
             <p className="text-gray-400 mt-4 max-w-md">
-              Feel the difference of real comfort as you go. Here's to the highest level of strength and minimal look.
+              Feel the difference of next-level comfort as you go head-to-head against some of the toughest terrains around.
             </p>
-            <Button className="mt-6 bg-yellow-400 text-black hover:bg-yellow-300">Buy Now</Button>
+            <Button className="mt-6 bg-yellow-400 text-black px-6 py-2 rounded-md hover:bg-yellow-300">
+              Buy Now
+            </Button>
 
-            <div className="flex gap-12 mt-10">
+            {/* Stats */}
+            <div className="flex flex-wrap gap-8 mt-10">
               <div>
-                <p className="text-3xl font-bold text-yellow-400">90k+</p>
-                <p className="text-gray-400">Collections</p>
+                <p className="text-3xl font-bold text-cyan-400">90K+</p>
+                <p className="text-gray-400 text-sm">Collections</p>
               </div>
-              <div>
-                <p className="text-3xl font-bold text-yellow-400">100k+</p>
-                <p className="text-gray-400">Users</p>
+              <div className="border-l border-gray-700 pl-4">
+                <p className="text-3xl font-bold text-pink-500">100K+</p>
+                <p className="text-gray-400 text-sm">Users</p>
               </div>
-            </div>
-
-            <div className="mt-8 flex items-center gap-2">
-              <p className="text-xl font-bold text-white">4.9</p>
-              <div className="flex text-yellow-400">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4" fill="currentColor" />)}
+              <div className="flex items-center gap-2 mt-2">
+                <p className="text-xl font-bold text-white ">4.9</p>
+                <div className="flex text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-sm text-gray-400 ml-2">200k+ Total Review</span>
               </div>
-              <span className="text-sm text-gray-400 ml-2">200k+ Total Reviews</span>
             </div>
           </motion.div>
 
+          {/* Image Section */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="absolute inset-0 flex items-center justify-center text-[8rem] text-gray-800 font-extrabold opacity-10 select-none z-0">
+            {/* NIKE text in background */}
+            <h1
+              className="absolute inset-0 flex items-center justify-center text-[14rem] font-extrabold text-transparent select-none z-0"
+              style={{
+                WebkitTextStroke: '2px white',
+                opacity: .25,
+              }}
+            >
               NIKE
             </h1>
+
+            {/* Shoe Image */}
             <motion.img
-              src="/3.png"
+              src="/3.png" // 🔁 Replace with correct image path or use the uploaded one if needed
               alt="Nike Shoe"
-              className="w-full max-w-lg mx-auto md:mx-0 relative z-10"
+              className="w-full max-w-lg mx-auto relative z-10"
               initial={{ scale: 0.9, rotate: -5 }}
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.05, rotate: 3, y: -10 }}
@@ -199,10 +213,9 @@ export default function AllRunPage() {
           </motion.div>
         </section>
 
-
         {/* Category Tabs */}
         <section className="p-10">
-          <h3 className="text-3xl font-bold text-yellow-400 mb-6 text-center">Categories</h3>
+          <h3 className="text-3xl font-bold text-yellow-400 mb-6">Categories</h3>
 
           <Tabs defaultValue="All" className="w-full">
             <TabsList className="flex justify-center flex-wrap gap-4 mb-8 bg-transparent border-none">
@@ -298,28 +311,27 @@ export default function AllRunPage() {
             })}
           </Tabs>
         </section>
-
-        {/* Footer */}
-        <footer className="bg-gray-900 text-gray-400 p-10 mt-10 text-sm">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div>
-              <h4 className="text-white font-bold mb-2">AllRun</h4>
-              <p className="mb-1">Experience the best comfort in every step</p>
-              <p>New York, NY</p>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-2">Company</h4>
-              <p>About</p>
-              <p>Careers</p>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-2">Support</h4>
-              <p>Contact</p>
-              <p>Help Center</p>
-            </div>
+      </main>
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 p-10 mt-10 text-sm">
+        <div className="grid md:grid-cols-3 gap-6">
+          <div>
+            <h4 className="text-white font-bold mb-2">AllRun</h4>
+            <p className="mb-1">Experience the best comfort in every step</p>
+            <p>New York, NY</p>
           </div>
-        </footer>
-      </div>
+          <div>
+            <h4 className="text-white font-bold mb-2">Company</h4>
+            <p>About</p>
+            <p>Careers</p>
+          </div>
+          <div>
+            <h4 className="text-white font-bold mb-2">Support</h4>
+            <p>Contact</p>
+            <p>Help Center</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
