@@ -327,25 +327,52 @@ export default function AllRunPage() {
 
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 p-10 mt-10 text-sm">
-        <div className="grid md:grid-cols-3 gap-6">
-          <div>
-            <h4 className="text-white font-bold mb-2">AllRun</h4>
-            <p className="mb-1">Experience the best comfort in every step</p>
-            <p>New York, NY</p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-2">Company</h4>
-            <p>About</p>
-            <p>Careers</p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-2">Support</h4>
-            <p>Contact</p>
-            <p>Help Center</p>
-          </div>
-        </div>
-      </footer>
+      <footer className="bg-gray-900 text-gray-400 px-8 py-12 mt-16 text-sm">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+    {/* Brand */}
+    <div>
+      <h4 className="text-2xl font-bold text-yellow-400 mb-4">AllRun</h4>
+      <p className="mb-2">Experience the best comfort in every step.</p>
+      <p>New York, NY</p>
+    </div>
+
+    {/* Company Links */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Company</h4>
+      <ul className="space-y-2">
+        <li className="hover:text-yellow-400 cursor-pointer">About</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Careers</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Blog</li>
+      </ul>
+    </div>
+
+    {/* Support Links */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Support</h4>
+      <ul className="space-y-2">
+        <li className="hover:text-yellow-400 cursor-pointer">Contact</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Help Center</li>
+        <li className="hover:text-yellow-400 cursor-pointer">FAQs</li>
+      </ul>
+    </div>
+
+    {/* Social Media (Optional) */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
+      <div className="flex space-x-4">
+        <a href="#" className="hover:text-yellow-400">🌐</a>
+        <a href="#" className="hover:text-yellow-400">🐦</a>
+        <a href="#" className="hover:text-yellow-400">📸</a>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom Bar */}
+  <div className="mt-10 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+    © {new Date().getFullYear()} AllRun. All rights reserved.
+  </div>
+</footer>
+
     </div>
   );
 }
