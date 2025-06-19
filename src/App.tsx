@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import ProductCard from "./components/page/ProductCard";
 // @ts-nocheck
 type Product = {
   title: string;
@@ -201,42 +202,7 @@ export default function AllRunPage() {
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                   >
                     {paginatedProducts.map((product, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.4 }}
-                        className="rounded-xl border border-gray-700 bg-[#1e1e1e] p-4"
-                      >
-                        <div className="relative">
-                          <img
-                            src={product.image}
-                            alt={product.title}
-                            className="w-full h-48 object-contain mb-4"
-                          />
-                          <div className="absolute top-2 right-2 bg-yellow-400 text-black px-2 py-1 rounded-full text-xs">
-                            {product.rating}
-                            <span className="text-gray-800">({product.reviews})</span>
-                          </div>
-                        </div>
-                        <h4 className="text-white text-lg font-semibold mb-1">{product.title}</h4>
-                        <p className="text-yellow-400 text-sm mb-2">{product.price}</p>
-                        <p className="text-gray-500 text-xs mb-1">
-                          Running Nike - Collection 2022
-                        </p>
-                        <div className="flex items-center gap-1 text-yellow-400 text-sm mb-4">
-                          {[...Array(5)].map((_, idx) => (
-                            <Star key={idx} className="h-4 w-4 fill-yellow-400" />
-                          ))}
-                        </div>
-                        <Button
-                          className="bg-yellow-400 text-black w-full hover:bg-yellow-300"
-                          onClick={() => setSelectedProduct(product)}
-                        >
-                          View Details
-                        </Button>
-                      </motion.div>
+                      <ProductCard product={product} onViewDetails={setSelectedProduct} />
                     ))}
                   </motion.div>
 
@@ -321,7 +287,7 @@ export default function AllRunPage() {
      
 <div className="mt-10">
   <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">Related Products</h3>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
     {
       allProducts["All"]
         .filter((p) => p.title !== selectedProduct.title)
@@ -361,25 +327,52 @@ export default function AllRunPage() {
 
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 p-10 mt-10 text-sm">
-        <div className="grid md:grid-cols-3 gap-6">
-          <div>
-            <h4 className="text-white font-bold mb-2">AllRun</h4>
-            <p className="mb-1">Experience the best comfort in every step</p>
-            <p>New York, NY</p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-2">Company</h4>
-            <p>About</p>
-            <p>Careers</p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-2">Support</h4>
-            <p>Contact</p>
-            <p>Help Center</p>
-          </div>
-        </div>
-      </footer>
+      <footer className="bg-gray-900 text-gray-400 px-8 py-12 mt-16 text-sm">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+    {/* Brand */}
+    <div>
+      <h4 className="text-2xl font-bold text-yellow-400 mb-4">AllRun</h4>
+      <p className="mb-2">Experience the best comfort in every step.</p>
+      <p>New York, NY</p>
+    </div>
+
+    {/* Company Links */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Company</h4>
+      <ul className="space-y-2">
+        <li className="hover:text-yellow-400 cursor-pointer">About</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Careers</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Blog</li>
+      </ul>
+    </div>
+
+    {/* Support Links */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Support</h4>
+      <ul className="space-y-2">
+        <li className="hover:text-yellow-400 cursor-pointer">Contact</li>
+        <li className="hover:text-yellow-400 cursor-pointer">Help Center</li>
+        <li className="hover:text-yellow-400 cursor-pointer">FAQs</li>
+      </ul>
+    </div>
+
+    {/* Social Media (Optional) */}
+    <div>
+      <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
+      <div className="flex space-x-4">
+        <a href="#" className="hover:text-yellow-400">🌐</a>
+        <a href="#" className="hover:text-yellow-400">🐦</a>
+        <a href="#" className="hover:text-yellow-400">📸</a>
+      </div>
+    </div>
+  </div>
+
+  {/* Bottom Bar */}
+  <div className="mt-10 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+    © {new Date().getFullYear()} AllRun. All rights reserved.
+  </div>
+</footer>
+
     </div>
   );
 }
