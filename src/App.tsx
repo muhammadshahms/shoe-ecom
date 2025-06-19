@@ -51,26 +51,14 @@ const allProducts: ProductsByCategory = {
       reviews: "150k+",
       image: "/2.png",
     },
+  ],
+  Boots: [
     {
-      title: "Nike Air Max",
-      price: "$190",
-      rating: 4.8,
-      reviews: "150k+",
-      image: "/2.png",
-    },
-    {
-      title: "Nike Air Max",
-      price: "$190",
-      rating: 4.8,
-      reviews: "150k+",
-      image: "/2.png",
-    },
-    {
-      title: "Nike Air Max",
-      price: "$190",
-      rating: 4.8,
-      reviews: "150k+",
-      image: "/2.png",
+      title: "Nike Running",
+      price: "$210",
+      rating: 4.9,
+      reviews: "200k+",
+      image: "/1.png",
     },
     {
       title: "Nike Air Max",
@@ -80,48 +68,18 @@ const allProducts: ProductsByCategory = {
       image: "/2.png",
     },
   ],
-  Boots: [{
-    title: "Nike Running",
-    price: "$210",
-    rating: 4.9,
-    reviews: "200k+",
-    image: "/1.png",
-  },
-  {
-    title: "Nike Air Max",
-    price: "$190",
-    rating: 4.8,
-    reviews: "150k+",
-    image: "/2.png",
-  },
-  {
-    title: "Nike Air Max",
-    price: "$190",
-    rating: 4.8,
-    reviews: "150k+",
-    image: "/2.png",
-  },
-  {
-    title: "Nike Air Max",
-    price: "$190",
-    rating: 4.8,
-    reviews: "150k+",
-    image: "/2.png",
-  }],
   Shoes: [],
   Sandals: [],
   Slipper: [],
   Jogging: [],
 };
 
-
-
 export default function AllRunPage() {
-  // const [activeCategory, setActiveCategory] = useState("All");
   const productsPerPage = 3;
   const [currentPages, setCurrentPages] = useState(
     Object.fromEntries(categories.map((cat) => [cat, 0]))
   );
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const setCurrentPage = (cat: any, page: any) => {
     setCurrentPages((prev: any) => ({
@@ -129,6 +87,7 @@ export default function AllRunPage() {
       [cat]: page,
     }));
   };
+
   return (
     <div className=" text-white min-h-screen font-sans bg bg-gradient-to-b from-gray-900 to-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -193,27 +152,21 @@ export default function AllRunPage() {
             </div>
           </motion.div>
 
-          {/* Image Section */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* NIKE text in background */}
             <h1
               className="absolute inset-0 flex items-center justify-center text-[14rem] font-extrabold text-transparent select-none z-0"
-              style={{
-                WebkitTextStroke: '2px white',
-                opacity: .25,
-              }}
+              style={{ WebkitTextStroke: '2px white', opacity: 0.25 }}
             >
               NIKE
             </h1>
 
-            {/* Shoe Image */}
             <motion.img
-              src="/3.png" // 🔁 Replace with correct image path or use the uploaded one if needed
+              src="/3.png"
               alt="Nike Shoe"
               className="w-full max-w-lg mx-auto relative z-10"
               initial={{ scale: 0.9, rotate: -5 }}
@@ -342,14 +295,16 @@ export default function AllRunPage() {
                             <Star key={idx} className="h-4 w-4 fill-yellow-400" />
                           ))}
                         </div>
-                        <Button className="bg-yellow-400 text-black w-full hover:bg-yellow-300">
-                          Buy Now
+                        <Button
+                          className="bg-yellow-400 text-black w-full hover:bg-yellow-300"
+                          onClick={() => setSelectedProduct(product)}
+                        >
+                          View Details
                         </Button>
                       </motion.div>
                     ))}
                   </motion.div>
 
-                  {/* Carousel Pagination Buttons */}
                   {totalPages > 1 && (
                     <div className="flex justify-center items-center gap-2 mt-8">
                       <Button
