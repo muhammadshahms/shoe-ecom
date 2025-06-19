@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CarTaxiFront, ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShoppingCart, Star } from "lucide-react";
 import {
   Tabs,
   TabsList,
@@ -79,7 +79,7 @@ export default function AllRunPage() {
   const [currentPages, setCurrentPages] = useState(
     Object.fromEntries(categories.map((cat) => [cat, 0]))
   );
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const setCurrentPage = (cat: any, page: any) => {
     setCurrentPages((prev: any) => ({
