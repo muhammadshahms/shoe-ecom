@@ -102,7 +102,7 @@ const Header = () => {
     const quickSearchSuggestions = ["Nike Air Max", "Running shoes", "Basketball shoes", "White sneakers", "Sale items"]
 
     return (
-        <>
+        <div className="bg-gray-900 text-white">
             {/* Top Bar */}
             <motion.div
                 className="bg-black text-white py-2 text-sm"
@@ -440,7 +440,7 @@ const Header = () => {
                     }}
                 />
             )}
-        </>
+        </div>
     )
 }
 
