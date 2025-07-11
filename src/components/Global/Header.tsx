@@ -46,20 +46,20 @@ const Header = () => {
     const navigationItems = [
         {
             name: "Home",
-            href: "#",
+            href: "/",
             hasDropdown: false,
         },
         {
             name: "Categories",
-            href: "#",
+            href: "/shop",
             hasDropdown: true,
             dropdownItems: [
-                { name: "Running Shoes", href: "#", badge: "New" },
-                { name: "Basketball", href: "#" },
-                { name: "Lifestyle", href: "#" },
-                { name: "Training", href: "#" },
-                { name: "Boots", href: "#" },
-                { name: "Sandals", href: "#", badge: "Sale" },
+                { name: "Running Shoes", href: "/shop", badge: "New" },
+                { name: "Basketball", href: "/shop" },
+                { name: "Lifestyle", href: "/shop" },
+                { name: "Training", href: "/shop" },
+                { name: "Boots", href: "/shop" },
+                { name: "Sandals", href: "/shop", badge: "Sale" },
             ],
         },
         {
@@ -67,16 +67,16 @@ const Header = () => {
             href: "#",
             hasDropdown: true,
             dropdownItems: [
-                { name: "Nike", href: "#" },
-                { name: "Adidas", href: "#" },
-                { name: "Puma", href: "#" },
-                { name: "New Balance", href: "#" },
-                { name: "Converse", href: "#" },
+                { name: "Nike", href: "/shop" },
+                { name: "Adidas", href: "/shop" },
+                { name: "Puma", href: "/shop" },
+                { name: "New Balance", href: "/shop" },
+                { name: "Converse", href: "/shop" },
             ],
         },
         {
             name: "Sale",
-            href: "#",
+            href: "/shop",
             hasDropdown: false,
             badge: "Hot",
         },
@@ -163,7 +163,7 @@ const Header = () => {
                             whileHover={{ scale: 1.05 }}
                             transition={{ type: "spring", stiffness: 300 }}
                         >
-                            
+                            <img src="/2.svg" alt="Logo" className="w-12 h-12 mr-2" />
                         </motion.div>
 
                         {/* Desktop Navigation */}
@@ -223,7 +223,6 @@ const Header = () => {
                                 />
                                 <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
 
-                                {/* Search Suggestions */}
                                 <AnimatePresence>
                                     {isSearchOpen && (
                                         <motion.div
@@ -267,7 +266,7 @@ const Header = () => {
                             </Button>
 
                             {/* Notifications */}
-                            <Button
+                            {/* <Button
                                 variant="ghost"
                                 size="icon"
                                 className="relative text-white hover:text-yellow-400 hover:bg-gray-800"
@@ -278,7 +277,7 @@ const Header = () => {
                                         {notificationCount}
                                     </Badge>
                                 )}
-                            </Button>
+                            </Button> */}
 
                             {/* Wishlist */}
                             <Button

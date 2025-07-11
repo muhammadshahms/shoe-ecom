@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import Header from "@/components/Global/Header"
 import Footer from "@/components/Global/Footer"
+import { Link } from "react-router-dom"
 
 type Product = {
     title: string
@@ -462,7 +463,7 @@ export default function Home() {
                                                                     className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-300 hover:to-orange-300 font-semibold rounded-xl shadow-lg hover:shadow-yellow-400/25 transition-all duration-300"
                                                                     onClick={() => setSelectedProduct(product)}
                                                                 >
-                                                                    View Details
+                                                                    <Link to={`/product-detail`}> View Details</Link>
                                                                 </Button>
                                                                 <Button
                                                                     variant="outline"

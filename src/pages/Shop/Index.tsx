@@ -1,5 +1,4 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -492,7 +491,7 @@ export default function ShopPage() {
                                 >
                                     {/* Top Controls */}
                                     <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border-white/20 shadow-2xl mb-8">
-                                        <CardContent className="p-6">
+                                        <CardContent>
                                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                                 {/* Results Summary */}
                                                 <div className="text-gray-300">
