@@ -9,16 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Toggle } from "@/components/ui/toggle"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Search, Grid3X3, List, X, ChevronDown, SlidersHorizontal, ArrowUpDown } from "lucide-react"
+import { Search, X, ChevronDown, SlidersHorizontal, ArrowUpDown } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState, useMemo } from "react"
-import Header from "@/components/Global/Header"
 import ProductCard from "@/components/Global/ProductCard"
-import Footer from "@/components/Global/Footer"
 
 
 // Sample product data
@@ -170,7 +167,7 @@ export default function ShopPage() {
     const [selectedCategory, setSelectedCategory] = useState("All")
     const [selectedBrand, setSelectedBrand] = useState("All")
     const [sortBy, setSortBy] = useState("featured")
-    const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+    const [viewMode, _setViewMode] = useState<"grid" | "list">("grid")
     const [priceRange, setPriceRange] = useState([0, 300])
     const [showOnSale, setShowOnSale] = useState(false)
     const [showNewOnly, setShowNewOnly] = useState(false)
@@ -228,77 +225,77 @@ export default function ShopPage() {
         setCurrentPage(1)
     }
 
-    const FilterContent = () => (
-        <div className="space-y-6">
-            {/* Brand Filter */}
-            <div className="space-y-3">
-                <Label className="text-white font-medium">Brand</Label>
-                <Select value={selectedBrand} onValueChange={setSelectedBrand}>
-                    <SelectTrigger className="bg-white/10 backdrop-blur-sm border-white/20 text-white focus:border-yellow-400">
-                        <SelectValue placeholder="Select brand" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-800 border-gray-700">
-                        {brands.map((brand) => (
-                            <SelectItem key={brand} value={brand} className="text-white hover:bg-gray-700">
-                                {brand}
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
+    // const FilterContent = () => (
+    //     <div className="space-y-6">
+    //         {/* Brand Filter */}
+    //         <div className="space-y-3">
+    //             <Label className="text-white font-medium">Brand</Label>
+    //             <Select value={selectedBrand} onValueChange={setSelectedBrand}>
+    //                 <SelectTrigger className="bg-white/10 backdrop-blur-sm border-white/20 text-white focus:border-yellow-400">
+    //                     <SelectValue placeholder="Select brand" />
+    //                 </SelectTrigger>
+    //                 <SelectContent className="bg-gray-800 border-gray-700">
+    //                     {brands.map((brand) => (
+    //                         <SelectItem key={brand} value={brand} className="text-white hover:bg-gray-700">
+    //                             {brand}
+    //                         </SelectItem>
+    //                     ))}
+    //                 </SelectContent>
+    //             </Select>
+    //         </div>
 
-            {/* Price Range */}
-            <div className="space-y-3">
-                <Label className="text-white font-medium">
-                    Price Range: ${priceRange[0]} - ${priceRange[1]}
-                </Label>
-                <Slider value={priceRange} onValueChange={setPriceRange} max={300} min={0} step={10} className="w-full" />
-            </div>
+    //         {/* Price Range */}
+    //         <div className="space-y-3">
+    //             <Label className="text-white font-medium">
+    //                 Price Range: ${priceRange[0]} - ${priceRange[1]}
+    //             </Label>
+    //             <Slider value={priceRange} onValueChange={setPriceRange} max={300} min={0} step={10} className="w-full" />
+    //         </div>
 
-            <Separator className="bg-white/20" />
+    //         <Separator className="bg-white/20" />
 
-            {/* Special Filters */}
-            <div className="space-y-4">
-                <Label className="text-white font-medium">Special Offers</Label>
-                <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                        <Checkbox
-                            id="on-sale"
-                            checked={showOnSale}
-                            onCheckedChange={setShowOnSale}
-                            className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
-                        />
-                        <Label htmlFor="on-sale" className="text-white cursor-pointer">
-                            On Sale
-                        </Label>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                        <Checkbox
-                            id="new-arrivals"
-                            checked={showNewOnly}
-                            onCheckedChange={setShowNewOnly}
-                            className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
-                        />
-                        <Label htmlFor="new-arrivals" className="text-white cursor-pointer">
-                            New Arrivals
-                        </Label>
-                    </div>
-                </div>
-            </div>
+    //         {/* Special Filters */}
+    //         <div className="space-y-4">
+    //             <Label className="text-white font-medium">Special Offers</Label>
+    //             <div className="space-y-3">
+    //                 <div className="flex items-center space-x-3">
+    //                     <Checkbox
+    //                         id="on-sale"
+    //                         checked={showOnSale}
+    //                         onCheckedChange={setShowOnSale}
+    //                         className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
+    //                     />
+    //                     <Label htmlFor="on-sale" className="text-white cursor-pointer">
+    //                         On Sale
+    //                     </Label>
+    //                 </div>
+    //                 <div className="flex items-center space-x-3">
+    //                     <Checkbox
+    //                         id="new-arrivals"
+    //                         checked={showNewOnly}
+    //                         onCheckedChange={setShowNewOnly}
+    //                         className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
+    //                     />
+    //                     <Label htmlFor="new-arrivals" className="text-white cursor-pointer">
+    //                         New Arrivals
+    //                     </Label>
+    //                 </div>
+    //             </div>
+    //         </div>
 
-            <Separator className="bg-white/20" />
+    //         <Separator className="bg-white/20" />
 
-            {/* Clear Filters */}
-            <Button
-                variant="outline"
-                className="w-full border-white/20 text-white hover:bg-white/10 bg-white/5"
-                onClick={clearFilters}
-            >
-                <X className="w-4 h-4 mr-2" />
-                Clear All Filters
-            </Button>
-        </div>
-    )
+    //         {/* Clear Filters */}
+    //         <Button
+    //             variant="outline"
+    //             className="w-full border-white/20 text-white hover:bg-white/10 bg-white/5"
+    //             onClick={clearFilters}
+    //         >
+    //             <X className="w-4 h-4 mr-2" />
+    //             Clear All Filters
+    //         </Button>
+    //     </div>
+    // )
 
     return (
         <>
@@ -453,11 +450,12 @@ export default function ShopPage() {
                                                         <div className="space-y-3">
                                                             <div className="flex items-center space-x-3">
                                                                 <Checkbox
-                                                                    id="on-sale"
-                                                                    checked={showOnSale}
-                                                                    onCheckedChange={setShowOnSale}
+                                                                    id="new-arrivals"
+                                                                    checked={showNewOnly}
+                                                                    onCheckedChange={(checked) => setShowNewOnly(checked === true)}
                                                                     className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
                                                                 />
+
                                                                 <Label htmlFor="on-sale" className="text-white cursor-pointer">
                                                                     On Sale
                                                                 </Label>
@@ -466,9 +464,10 @@ export default function ShopPage() {
                                                                 <Checkbox
                                                                     id="new-arrivals"
                                                                     checked={showNewOnly}
-                                                                    onCheckedChange={setShowNewOnly}
+                                                                    onCheckedChange={(checked) => setShowNewOnly(checked === true)}
                                                                     className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
                                                                 />
+
                                                                 <Label htmlFor="new-arrivals" className="text-white cursor-pointer">
                                                                     New Arrivals
                                                                 </Label>
@@ -630,22 +629,24 @@ export default function ShopPage() {
                                                                         <div className="space-y-3">
                                                                             <div className="flex items-center space-x-3">
                                                                                 <Checkbox
-                                                                                    id="mobile-on-sale"
-                                                                                    checked={showOnSale}
-                                                                                    onCheckedChange={setShowOnSale}
+                                                                                    id="new-arrivals"
+                                                                                    checked={showNewOnly}
+                                                                                    onCheckedChange={(checked) => setShowNewOnly(checked === true)}
                                                                                     className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
                                                                                 />
+
                                                                                 <Label htmlFor="mobile-on-sale" className="text-white cursor-pointer">
                                                                                     On Sale
                                                                                 </Label>
                                                                             </div>
                                                                             <div className="flex items-center space-x-3">
                                                                                 <Checkbox
-                                                                                    id="mobile-new-arrivals"
+                                                                                    id="new-arrivals"
                                                                                     checked={showNewOnly}
-                                                                                    onCheckedChange={setShowNewOnly}
+                                                                                    onCheckedChange={(checked) => setShowNewOnly(checked === true)}
                                                                                     className="border-white/20 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
                                                                                 />
+
                                                                                 <Label htmlFor="mobile-new-arrivals" className="text-white cursor-pointer">
                                                                                     New Arrivals
                                                                                 </Label>

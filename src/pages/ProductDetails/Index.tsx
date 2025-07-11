@@ -20,9 +20,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Header from "@/components/Global/Header"
 import ProductCard from "@/components/Global/ProductCard"
-import Footer from "@/components/Global/Footer"
 
 // Product data
 const product = {

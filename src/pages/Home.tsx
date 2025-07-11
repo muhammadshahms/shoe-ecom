@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight, ShoppingCart, Star, Sparkles, TrendingUp, Aw
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { motion } from "framer-motion"
 import { useState } from "react"
-import Header from "@/components/Global/Header"
-import Footer from "@/components/Global/Footer"
 import { Link } from "react-router-dom"
 
 type Product = {
@@ -123,7 +121,8 @@ const allProducts: ProductsByCategory = {
 export default function Home() {
     const productsPerPage = 6
     const [currentPages, setCurrentPages] = useState(Object.fromEntries(categories.map((cat) => [cat, 0])))
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+    const [_selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+
 
     const setCurrentPage = (cat: any, page: any) => {
         setCurrentPages((prev: any) => ({

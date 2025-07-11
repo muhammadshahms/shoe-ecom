@@ -11,7 +11,6 @@ import {
     Phone,
     Mail,
     Globe,
-    Bell,
     Settings,
     LogOut,
     Package,
@@ -32,7 +31,6 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [cartCount] = useState(3)
     const [wishlistCount] = useState(5)
-    const [notificationCount] = useState(2)
 
     // Handle scroll effect
     useEffect(() => {
